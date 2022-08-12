@@ -49,7 +49,7 @@ class Cat{
 
     sleep(hours){
         this.#happiness+= hours;
-        this.#hunger += (hours/2);
+        this.#hunger += (hours/0.5);
         this.#loveliness ++;
         this.#tiredness -= hours;
     }
@@ -65,7 +65,7 @@ class Cat{
         return(`<li>Ich bin ${this.checkStatus(this.tiredness)} (${this.tiredness}) müde.</li>
         <li>Ich bin ${this.checkStatus(this.hunger)} (${this.hunger}) hungrig.</li>
         <li>Ich bin ${this.checkStatus(this.loveliness)} (${this.loveliness}) verschmust.</li>
-        <li>Ich bin ${this.checkStatus(this.happiness)} (${this.happiness}) Glücklich.</li>`);
+        <li>Ich bin ${this.checkStatus(this.happiness)} (${this.happiness}) glücklich.</li>`);
     }
 
     checkStatus(value){
@@ -89,17 +89,18 @@ class Cat{
     }
 
 }
-
-const mimi = new Cat("Mimi");
-mimi.sleep(8);
-mimi.feed(30);
-mimi.statusPrintOut();
-mimi.pet(15);
-mimi.statusPrintOut();
+const names = ["strayCat", "Mausi", "Mizi", "Felix", "Katerlein"];
+const catName = Math.floor(Math.random() * names.length);
+const strayCat = new Cat(names[catName]);
+strayCat.sleep(8);
+strayCat.feed(30);
+strayCat.statusPrintOut();
+strayCat.pet(15);
+strayCat.statusPrintOut();
 
 const title = document.querySelector('#cat-title');
 const description = document.querySelector('#cat-description');
 const image = document.querySelector('#cat-image');
-image.src = mimi.image;
-title.innerHTML = `Mein Name ist ${mimi.name}`;
-description.innerHTML = `<ul>${mimi.statusPrintOut()}</ul>`;
+image.src = strayCat.image;
+title.innerHTML = `Mein Name ist ${strayCat.name}`;
+description.innerHTML = `<ul>${strayCat.statusPrintOut()}</ul>`;
