@@ -1,20 +1,39 @@
 class Cat{
+    #name;
     #tiredness;
     #hunger;
     #loveliness;
     #happiness;
+    #image;
 
-    constructor(){
-        this.#tiredness = 0;
-        this.#hunger = 100;
-        this.#loveliness = 0;
-        this.#happiness = 0;
+    constructor(name){
+        this.#name = name;
+        this.#tiredness = Math.floor((Math.random() * 100)+1);
+        this.#hunger = Math.floor((Math.random() * 100)+1);
+        this.#loveliness = Math.floor((Math.random() * 100)+1);
+        this.#happiness = Math.floor((Math.random() * 100)+1);
+        const img = Math.floor((Math.random()* 3)+1 );
+        switch(img){
+            case 1:
+                this.#image = './src/img/cat1.png';
+                break;
+            case 2:
+                this.#image = './src/img/cat2.png';
+                break;
+            case 3:
+                this.#image = './src/img/cat3.png';
+                break;
+            default:
+                this.#image = './src/img/cat3.png';
+        }
     }
 
+    get name(){ return this.#name; }
     get tiredness(){ return this.#tiredness; }
     get hunger(){ return this.#hunger; }
     get loveliness(){ return this.#loveliness; }
     get happiness(){ return this.#happiness; }
+    get image(){ return this.#image; }
 
     feed(footBites){
         if(this.#hunger < 0){
@@ -43,17 +62,44 @@ class Cat{
     }
 
     statusPrintOut(){
-        console.log(`My  tiredness is ${this.tiredness}`);
-        console.log(`My  hunger is ${this.hunger}`);
-        console.log(`My  loveliness is ${this.loveliness}`);
-        console.log(`My  happiness is ${this.happiness}`);
+        return(`<li>Ich bin ${this.checkStatus(this.tiredness)} (${this.tiredness}) müde.</li>
+        <li>Ich bin ${this.checkStatus(this.hunger)} (${this.hunger}) hungrig.</li>
+        <li>Ich bin ${this.checkStatus(this.loveliness)} (${this.loveliness}) verschmust.</li>
+        <li>Ich bin ${this.checkStatus(this.happiness)} (${this.happiness}) Glücklich.</li>`);
+    }
+
+    checkStatus(value){
+        
+        switch(true){
+            case (value >= 90):
+                return 'extrem';
+                break;
+            case (value >= 60):
+                return 'sehr';
+                break;
+            case (value >= 25):
+                return 'ein wenig';
+                break;
+            case (value < 25):
+                return 'überhaupt nicht';
+                break;
+            default:
+                return 'keine Ahnung, wie sehr, aber immer etwas';
+        }
     }
 
 }
 
-const mimi = new Cat();
+const mimi = new Cat("Mimi");
 mimi.sleep(8);
-mimi.feed(5);
+mimi.feed(30);
 mimi.statusPrintOut();
 mimi.pet(15);
 mimi.statusPrintOut();
+
+const title = document.querySelector('#cat-title');
+const description = document.querySelector('#cat-description');
+const image = document.querySelector('#cat-image');
+image.src = mimi.image;
+title.innerHTML = `Mein Name ist ${mimi.name}`;
+description.innerHTML = `<ul>${mimi.statusPrintOut()}</ul>`;
