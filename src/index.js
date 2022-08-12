@@ -9,16 +9,16 @@ class Cat{
     constructor(name){
         this.#name = name;
         // Zufallszahlen 0 - 100 -> erstmal auskommentiert ***********************
-        // this.#tiredness = Math.floor((Math.random() * 100)+1);
-        // this.#hunger = Math.floor((Math.random() * 100)+1);
-        // this.#cuddliness = Math.floor((Math.random() * 100)+1);
-        // this.#happiness = Math.floor((Math.random() * 100)+1);
+        this.#tiredness = Math.floor((Math.random() * 100)+1);
+        this.#hunger = Math.floor((Math.random() * 100)+1);
+        this.#cuddliness = Math.floor((Math.random() * 100)+1);
+        this.#happiness = Math.floor((Math.random() * 100)+1);
 
-        this.#tiredness = 100;
-        this.#hunger = 100;
+        // this.#tiredness = 100;
+        // this.#hunger = 100;
         // Anstatt: Loneliness -> habe ich so entschieden
-        this.#cuddliness = 0;
-        this.#happiness = 0;
+        // this.#cuddliness = 0;
+        // this.#happiness = 0;
 
         const img = Math.floor((Math.random()* 3)+1 );
         switch(img){
