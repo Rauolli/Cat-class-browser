@@ -2,16 +2,24 @@ class Cat{
     #name;
     #tiredness;
     #hunger;
-    #loveliness;
+    #cuddliness;
     #happiness;
     #image;
 
     constructor(name){
         this.#name = name;
-        this.#tiredness = Math.floor((Math.random() * 100)+1);
-        this.#hunger = Math.floor((Math.random() * 100)+1);
-        this.#loveliness = Math.floor((Math.random() * 100)+1);
-        this.#happiness = Math.floor((Math.random() * 100)+1);
+        // Zufallszahlen 0 - 100 -> erstmal auskommentiert ***********************
+        // this.#tiredness = Math.floor((Math.random() * 100)+1);
+        // this.#hunger = Math.floor((Math.random() * 100)+1);
+        // this.#cuddliness = Math.floor((Math.random() * 100)+1);
+        // this.#happiness = Math.floor((Math.random() * 100)+1);
+
+        this.#tiredness = 100;
+        this.#hunger = 100;
+        // Anstatt: Loneliness -> habe ich so entschieden
+        this.#cuddliness = 0;
+        this.#happiness = 0;
+
         const img = Math.floor((Math.random()* 3)+1 );
         switch(img){
             case 1:
@@ -28,43 +36,38 @@ class Cat{
         }
     }
 
+    // getter-Methoden
     get name(){ return this.#name; }
     get tiredness(){ return this.#tiredness; }
     get hunger(){ return this.#hunger; }
-    get loveliness(){ return this.#loveliness; }
+    get cuddliness(){ return this.#cuddliness; }
     get happiness(){ return this.#happiness; }
     get image(){ return this.#image; }
 
+
     feed(footBites){
-        if(this.#hunger < 0){
-            this.#tiredness++;
-            this.#hunger -= footBites;
-            return;
-        }else if(this.#hunger >= 0){
-            this.#hunger -= footBites;
-            this.#happiness += footBites;
-            this.#loveliness++;
-        }
+        this.#hunger -= parseInt(footBites);
+        // Vorerst ohne jegliche Logic
     }
 
     sleep(hours){
-        this.#happiness+= hours;
-        this.#hunger += (hours/0.5);
-        this.#loveliness ++;
-        this.#tiredness -= hours;
+        // in nubmber wandeln
+        this.#tiredness -= parseInt(hours);
     }
 
     pet(minutes){
-        this.#loveliness += (minutes*2)
-        this.#happiness ++;
-        this.#hunger++;
-        this.#tiredness += minutes;
+        // in Number wandeln
+        const minInt = parseInt(minutes);
+        // vorerst keine weitere Logik
+        this.#cuddliness += minInt;
+        this.#happiness += minInt;
+        //this.#tiredness += minInt/4;
     }
 
     statusPrintOut(){
-        return(`<li>Ich bin ${this.checkStatus(this.tiredness)} (${this.tiredness}) müde.</li>
-        <li>Ich bin ${this.checkStatus(this.hunger)} (${this.hunger}) hungrig.</li>
-        <li>Ich bin ${this.checkStatus(this.loveliness)} (${this.loveliness}) verschmust.</li>
+        return(`<li>Ich bin ${this.checkStatus(this.hunger)} (${this.hunger}) hungrig.</li>
+        <li>Ich bin ${this.checkStatus(this.tiredness)} (${this.tiredness}) müde.</li>  
+        <li>Ich bin ${this.checkStatus(this.cuddliness)} (${this.cuddliness}) verschmust.</li>
         <li>Ich bin ${this.checkStatus(this.happiness)} (${this.happiness}) glücklich.</li>`);
     }
 
@@ -83,7 +86,7 @@ class Cat{
                 return 'überhaupt nicht';
                 break;
             default:
-                return 'keine Ahnung, wie sehr, aber immer etwas';
+                return 'keine Ahnung, wie sehr, aber etwas';
         }
     }
 
@@ -91,15 +94,56 @@ class Cat{
 const names = ["Mimi", "Mausi", "Mizi", "Felix", "Katerlein"];
 const catName = Math.floor(Math.random() * names.length);
 const strayCat = new Cat(names[catName]);
-strayCat.sleep(8);
-strayCat.feed(30);
-strayCat.statusPrintOut();
-strayCat.pet(15);
-strayCat.statusPrintOut();
 
+// **** Test *** verschiedene Werte zum Füttern, Schlafen, Streicheln ***
+// strayCat.sleep(8);
+// strayCat.feed(30);
+// strayCat.statusPrintOut();
+// strayCat.pet(15);
+// strayCat.statusPrintOut();
+
+// Überschrift
 const title = document.querySelector('#cat-title');
+// Beschreibung
 const description = document.querySelector('#cat-description');
+// Bild
 const image = document.querySelector('#cat-image');
+
+// Werte der Input-Range-Felder auslesen
+const feedVal = document.querySelector('#feed-rng').value;
+const sleepVal = document.querySelector('#sleep-rng').value;
+const petVal = document.querySelector('#pet-rng').value;
+
+console.log("Futter Wert: " + feedVal);
+console.log("Schlaf Wert: " + sleepVal);
+console.log("Futter Wert: " + feedVal);
+
+// Buttons für Füttern, Schlafen, Streicheln 
+const btnFeed = document.querySelector('#feed-btn');
+btnFeed.addEventListener('click', () => {
+    const feedVal = document.querySelector('#feed-rng').value;
+    strayCat.feed(feedVal);
+    changeDescription();
+});
+const btnSleep = document.querySelector('#sleep-btn');
+btnSleep.addEventListener('click', () => {
+    const sleepVal = document.querySelector('#sleep-rng').value;
+    strayCat.sleep(sleepVal);
+    changeDescription();
+});
+const btnPet = document.querySelector('#pet-btn');
+btnPet.addEventListener('click', () => {
+    const petVal = document.querySelector('#pet-rng').value;
+    strayCat.pet(petVal);
+    changeDescription();
+});
+
+
+
+// Function zum Ändern der Beschreibung ----------------------------------------------
+const changeDescription = () => description.innerHTML = `<ul>${strayCat.statusPrintOut()}</ul>`;
+
+
 image.src = strayCat.image;
 title.innerHTML = `Mein Name ist ${strayCat.name}`;
-description.innerHTML = `<ul>${strayCat.statusPrintOut()}</ul>`;
+changeDescription();
