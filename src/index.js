@@ -68,8 +68,7 @@ class Cat{
         <li>Ich bin ${this.checkStatus(this.happiness)} (${this.happiness}) glücklich.</li>`);
     }
 
-    checkStatus(value){
-        
+    checkStatus(value){       
         switch(true){
             case (value >= 90):
                 return 'extrem';
@@ -89,7 +88,7 @@ class Cat{
     }
 
 }
-const names = ["strayCat", "Mausi", "Mizi", "Felix", "Katerlein"];
+const names = ["Mimi", "Mausi", "Mizi", "Felix", "Katerlein"];
 const catName = Math.floor(Math.random() * names.length);
 const strayCat = new Cat(names[catName]);
 strayCat.sleep(8);
