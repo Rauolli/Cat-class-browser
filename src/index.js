@@ -7,12 +7,10 @@ const strayCat = new Cat(names[catName]);
 
 document.addEventListener('DOMContentLoaded', function(event){
     console.log('DOM fully loaded and parsed');
-    console.log(htmlElements);
+    //console.log(htmlElements);
     addButtonEventListener();
-    console.log('Event listener added', addButtonEventListener());
-    changeDescription();
-    // htmlElements.image.src = strayCat.image;
-    // htmlElements.title.innerHTML = `Mein Name ist ${strayCat.name}`;   
+    console.log('Event listener added');
+    changeDescription();   
 })
 
 
