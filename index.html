@@ -1,43 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat</title>
-    <link rel="stylesheet" href="./src/style.css">
-</head>
-<body>
-    <main class="app">
-        <h1 id="cat-title">Title Cat</h1>
-        <article id="cat-article">
-            <figure class="cat-image-figure">
-                <img id="cat-image" src="" alt="Katzenbild">
-                <figurecaption id="cat-image-title">
-                </figurecaption>
-            </figure>
-            <section id="cat-change-status">
-                <div class="brd">
-                    <label for="feed">Füttern:</label>
-                    <input type="range" min="0" max="10" name="feed" id="feed-rng">
-                    <button id="feed-btn">OK</button>
-                </div>
-                <div class="brd">
-                    <label for="sleep">Schlafen:</label>
-                    <input type="range" min="0" max="10" name="sleep" id="sleep-rng">
-                    <button id="sleep-btn">OK</button>
-                </div>
-                <div class="brd">
-                    <label for="pet">Streicheln:</label>
-                    <input type="range" min="0" max="10" name="pet" id="pet-rng">
-                    <button id="pet-btn">OK</button>
-                </div>
-            </section>
-            <section id="cat-description">
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cat</title>
+        <link rel="stylesheet" href="./src/style.css">
+    </head>
+    <body>
+        <main class="app">
+            <h1 id="cat-title">Title Cat</h1>
+            <article id="cat-article">
+                <figure class="cat-image-figure">
+                    <img id="cat-image" src="" alt="Katzenbild">
+                    <figurecaption id="cat-image-title">
+                    </figurecaption>
+                </figure>
+                <section class="cat-change-status">
+                    <div class="brd">
+                        <label for="feed-rng">Füttern:</label>
+                        <input type="range" min="0" max="10" name="feed" id="feed-rng">
+                        <button id="feed-btn">OK</button>
+                    </div>
+                    <div class="brd">
+                        <label for="sleep-rng">Schlafen:</label>
+                        <input type="range" min="0" max="10" name="sleep" id="sleep-rng">
+                        <button id="sleep-btn">OK</button>
+                    </div>
+                    <div class="brd">
+                        <label for="pet-rng">Streicheln:</label>
+                        <input type="range" min="0" max="10" name="pet" id="pet-rng">
+                        <button id="pet-btn">OK</button>
+                    </div>
+                </section>
+                <section class="cat-description">
 
-            </section>
-        </article>
-    </main>
-    <script src="./src/index.js"></script>
-</body>
+                </section>
+            </article>
+        </main>
+        <script type="module" src="./src/index.js"></script>
+        </body>
 </html>
